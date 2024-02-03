@@ -32,7 +32,6 @@ android {
         release {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             minifyEnabled true
-            signingConfig signingConfigs.release
             ndk {
                 abiFilters 'armeabi-v7a'                
             }
