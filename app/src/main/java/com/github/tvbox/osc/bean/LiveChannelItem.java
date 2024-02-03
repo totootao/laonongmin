@@ -88,7 +88,7 @@ public class LiveChannelItem {
     }
 
     public void setChannelDurations(ArrayList<Integer> channelDurations) {
-        this.channelUrls = channelUrls;
+        this.channelDurations = channelDurations;
     }
     public void preSource() {
         sourceIndex--;
