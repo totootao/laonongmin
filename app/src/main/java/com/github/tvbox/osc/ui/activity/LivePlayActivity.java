@@ -875,6 +875,10 @@ public class LivePlayActivity extends BaseActivity {
             currentChannelGroupIndex = channelGroupIndex;
             currentLiveChannelIndex = liveChannelIndex;
             currentLiveChannelItem = getLiveChannels(currentChannelGroupIndex).get(currentLiveChannelIndex);
+            if(currentLiveChannelItem.getDuration()>0)
+            {
+                currentLiveChannelItem.lunboSource();
+            }
             Hawk.put(HawkConfig.LIVE_CHANNEL, currentLiveChannelItem.getChannelName());
             livePlayerManager.getLiveChannelPlayer(mVideoView, currentLiveChannelItem.getChannelName());
         }
@@ -897,6 +901,10 @@ public class LivePlayActivity extends BaseActivity {
         mVideoView.setUrl(currentLiveChannelItem.getUrl());
         showChannelInfo();
         mVideoView.start();
+        if(currentLiveChannelItem.getDuration()>0){
+            mVideoView.seekTo(currentLiveChannelItem.getSeekto()*1000);
+            currentLiveChannelItem.setSeekto(0);
+        }
         return true;
     }
 
