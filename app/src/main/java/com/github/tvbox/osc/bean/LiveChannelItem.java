@@ -21,6 +21,9 @@ public class LiveChannelItem {
     private String channelName;
     private ArrayList<String> channelSourceNames;
     private ArrayList<String> channelUrls;
+    private ArrayList<Integer> channelDurations;
+    private int duration = 0;
+    private int seekto = 0;
     public int sourceIndex = 0;
     public int sourceNum = 0;
     public boolean include_back = false;
@@ -32,7 +35,6 @@ public class LiveChannelItem {
     public boolean getinclude_back() {
         return include_back;
     }
-
 
     public void setChannelIndex(int channelIndex) {
         this.channelIndex = channelIndex;
@@ -66,6 +68,28 @@ public class LiveChannelItem {
         this.channelUrls = channelUrls;
         sourceNum = channelUrls.size();
     }
+    public int getSeekto() {
+        return seekto;
+    }
+
+    public void setSeekto(int seekto) {
+        this.seekto = seekto;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+    public ArrayList<Integer> setChannelDurations() {
+        return channelDurations;
+    }
+
+    public void setChannelDurations(ArrayList<Integer> channelDurations) {
+        this.channelUrls = channelUrls;
+    }
     public void preSource() {
         sourceIndex--;
         if (sourceIndex < 0) sourceIndex = sourceNum - 1;
@@ -74,7 +98,19 @@ public class LiveChannelItem {
         sourceIndex++;
         if (sourceIndex == sourceNum) sourceIndex = 0;
     }
-
+    public void lunboSource() {
+       if(duration == 0){return;}
+       int time = Math.toIntExact((System.currentTimeMillis() / 1000));
+       time = time % this.duration;
+       int durations =0;
+       int i =0;
+       while(durations < time){
+           durations += channelDurations.get(i++);
+       }
+       sourceIndex = i;
+       seekto = time + channelDurations.get(i) - durations;
+       if (sourceIndex == sourceNum) sourceIndex = 0;
+    }
     public void setSourceIndex(int sourceIndex) {
         this.sourceIndex = sourceIndex;
     }
