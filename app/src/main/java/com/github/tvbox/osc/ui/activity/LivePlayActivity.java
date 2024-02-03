@@ -900,11 +900,11 @@ public class LivePlayActivity extends BaseActivity {
         getEpg(new Date());
         mVideoView.setUrl(currentLiveChannelItem.getUrl());
         showChannelInfo();
-        mVideoView.start();
         if(currentLiveChannelItem.getDuration()>0){
             mVideoView.seekTo(currentLiveChannelItem.getSeekto()*1000);
             currentLiveChannelItem.setSeekto(0);
         }
+        mVideoView.start();
         return true;
     }
 
