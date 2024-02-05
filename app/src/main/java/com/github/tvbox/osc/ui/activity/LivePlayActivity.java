@@ -1569,6 +1569,11 @@ public class LivePlayActivity extends BaseActivity {
                 mVideoView.release();
                 livePlayerManager.changeLivePlayerType(mVideoView, position, currentLiveChannelItem.getChannelName());
                 mVideoView.setUrl(currentLiveChannelItem.getUrl());
+                if(currentLiveChannelItem.getDuration()>0){
+                    currentLiveChannelItem.lunboSource();
+                    mVideoView.skipPositionWhenPlay(currentLiveChannelItem.getSeekto()*1000);
+                    currentLiveChannelItem.setSeekto(0);
+                }
                 mVideoView.start();
                 break;
             case 3://超时换源
