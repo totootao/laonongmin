@@ -107,9 +107,10 @@ public class LiveChannelItem {
        while(durations < time){
            durations += channelDurations.get(i++);
        }
-       if(i==sourceNum) i=0;
+       i--;
        sourceIndex = i;
        seekto = time + channelDurations.get(i) - durations;
+       
        if (sourceIndex == sourceNum) sourceIndex = 0;
     }
     public void setSourceIndex(int sourceIndex) {
