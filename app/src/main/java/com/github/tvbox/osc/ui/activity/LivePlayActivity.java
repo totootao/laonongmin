@@ -901,7 +901,7 @@ public class LivePlayActivity extends BaseActivity {
         mVideoView.setUrl(currentLiveChannelItem.getUrl());
         showChannelInfo();
         if(currentLiveChannelItem.getDuration()>0){
-            mVideoView.seekTo(currentLiveChannelItem.getSeekto()*1000);
+            mVideoView.skipPositionWhenPlay(currentLiveChannelItem.getSeekto()*1000);
             currentLiveChannelItem.setSeekto(0);
         }
         mVideoView.start();
